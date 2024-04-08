@@ -18,15 +18,4 @@ while True:
 
     # 4방향 모두 청소되었거나 벽인 경우 후진 또는 작동 중지
     if room[nx - 1][ny] != 0 and room[nx][ny + 1] != 0 and room[nx + 1][ny] != 0 and room[nx][ny - 1] != 0:
-        if room[nx - dx[direction]][ny - dy[direction]] == 1:  # 뒤쪽이 벽인 경우 작동 중지
-            break
-        else:  # 후진
-            nx -= dx[direction]
-            ny -= dy[direction]
-    else:  # 4방향 중 청소 안된 곳이 있으면 회전 후 전진
-        direction = (direction - 1) % 4  # 반시계 방향 회전
-        if room[nx + dx[direction]][ny + dy[direction]] == 0:  # 회전한 후의 위치가 청소 안된 곳인 경우 전진
-            nx += dx[direction]
-            ny += dy[direction]
-
-print(rect)
+        if room[nx - dx[direction]][JIEJROP2JFI
