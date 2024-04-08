@@ -1,38 +1,32 @@
-# when, dir = input().split()
-# print(when, dir)
-# print(type(dir))
-# print(type(int(when)))
-#
+row, col = map(int, input().split())
 
-####
-
-
-# 위 오른쪽 아래 왼쪽
-# 0     1  2    3
+# 북 동 남 서
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
-dirct = 1
 
-nx, ny = 0, 0
-print('현위치', nx, ny)
+nx, ny, direction = map(int, input().split())
 
-nx = nx + dx[dirct]
-ny = ny + dy[dirct]
+room = [list(map(int, input().split())) for _ in range(row)]
 
-print(dx[dirct], dy[dirct])
-print('오른쪽 이동후', nx, ny)
+rect = 0
 
-dirct = (dirct+1)%4
-nx = nx + dx[dirct]
-ny = ny + dy[dirct]
+while True:
+    # 현재 칸 청소
+    if room[nx][ny] == 0:
+        room[nx][ny] = 2  # 청소 표시
+        rect += 1
 
-print(dx[dirct], dy[dirct])
-print('아래 이동후', nx, ny)
+    # 4방향 모두 청소되었거나 벽인 경우 후진 또는 작동 중지
+    if room[nx - 1][ny] != 0 and room[nx][ny + 1] != 0 and room[nx + 1][ny] != 0 and room[nx][ny - 1] != 0:
+        if room[nx - dx[direction]][ny - dy[direction]] == 1:  # 뒤쪽이 벽인 경우 작동 중지
+            break
+        else:  # 후진
+            nx -= dx[direction]
+            ny -= dy[direction]
+    else:  # 4방향 중 청소 안된 곳이 있으면 회전 후 전진
+        direction = (direction - 1) % 4  # 반시계 방향 회전
+        if room[nx + dx[direction]][ny + dy[direction]] == 0:  # 회전한 후의 위치가 청소 안된 곳인 경우 전진
+            nx += dx[direction]
+            ny += dy[direction]
 
-dirct = (dirct+3)%4
-
-nx = nx + dx[dirct]
-ny = ny + dy[dirct]
-
-print(dx[dirct], dy[dirct])
-print('왼쪽 이동후', nx, ny)
+print(rect)
