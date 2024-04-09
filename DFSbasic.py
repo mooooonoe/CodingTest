@@ -65,7 +65,7 @@ def permutation(arr, r):
 
 print(permutation([1,2,2,4,3], 3))
 
-# # 증복순열
+# # 증복순열 *****
 
 def permutation(arr, r):
     result = []
