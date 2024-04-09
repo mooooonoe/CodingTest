@@ -1,21 +1,13 @@
-row, col = map(int, input().split())
+# arr = [1,3,2,1,5,2]
+# print(min(arr))
+# print(max(arr))
 
-# 북 동 남 서
-dx = [-1, 0, 1, 0]
-dy = [0, 1, 0, -1]
+a = -5
+b = 2
+if a<0:
+    a = abs(a)
+    result = round(a / b)
+    result = -result
+    print(result)
 
-nx, ny, direction = map(int, input().split())
 
-room = [list(map(int, input().split())) for _ in range(row)]
-
-rect = 0
-
-while True:
-    # 현재 칸 청소
-    if room[nx][ny] == 0:
-        room[nx][ny] = 2  # 청소 표시
-        rect += 1
-
-    # 4방향 모두 청소되었거나 벽인 경우 후진 또는 작동 중지
-    if room[nx - 1][ny] != 0 and room[nx][ny + 1] != 0 and room[nx + 1][ny] != 0 and room[nx][ny - 1] != 0:
-        if room[nx - dx[direction]][JIEJROP2JFI

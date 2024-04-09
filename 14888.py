@@ -12,12 +12,6 @@ for i in range(4):
     if(tools[i]==0):
         continue
 
-global minResult
-global maxResult
-
-minResult = -1e9
-maxResult = 1e9
-
 def permutation(arr, r):
     result = []
     arr.sort()
@@ -31,28 +25,48 @@ def permutation(arr, r):
                 continue
             gen_permutation(elements[:i]+elements[i+1:], r - 1, path + [elements[i]])
 
-    gen_permutation(arr,r)
+    gen_permutation(arr, r)
     return result
 
 Ori = list(permutation(org, N-1))
-print(Ori[0])
-print(Ori[1])
 
-# for i in range(N-1):
-#     permutation(num(i),num(i+1),org(i))
+def Toolmath(a,b,x):
+    if x == 0:
+        return a+b
+    elif x == 1:
+        return a-b
+    elif x == 2:
+        return a*b
+    elif x == 3:
+        a = round(abs(a))
+        b = round(abs(b))
+        result = round(a/b)
+        if a<0:
+            result = -result
+            return result
+        else:
+            return
+
+one = 0; two = 0
+arr = [0]*len(Ori)
+for j in range(len(Ori)):
+    for i in range(N-1):
+        if i == 0:
+            y = num[0]
+        y = Toolmath(y, num[i+1], Ori[j][i])
+        arr[j] = y
+
+    one = min(arr)
+    two = max(arr)
+
+
+print(two)
+print(one)
 
 
 
-#
-# class ToolMath:
-#     def plustool(a,b) -> int:
-#         return a+b
-#     def minustool(a,b) -> int:
-#         return a-b
-#     def multitool(a,b) -> int:
-#         return a*b
-#     def devitool(a,b) -> int:
-#         return a/b
+
+
 
 
 
