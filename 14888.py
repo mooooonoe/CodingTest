@@ -40,12 +40,11 @@ def Toolmath(a,b,x):
     elif x == 3:
         a = round(abs(a))
         b = round(abs(b))
-        result = round(a/b)
         if a<0:
-            result = -result
+            result = -(abs(a)//b)       #### 정수 나눗셈 ***
             return result
         else:
-            return
+            return a//b
 
 one = 0; two = 0
 arr = [0]*len(Ori)
