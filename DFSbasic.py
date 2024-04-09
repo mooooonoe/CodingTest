@@ -69,22 +69,23 @@ print(permutation([1,2,2,4,3], 3))
 
 def permutation(arr, r):
     result = []
-    if r == 0:
-        return [[]]
+    arr.sort()  # 배열을 정렬하여 중복을 방지
 
-    used = set()  # 이전에 사용된 인덱스를 저장할 집합
+    def generate_permutation(elements, r, path=[]):
+        if r == 0:
+            result.append(path)
+            return
 
-    for i in range(len(arr)):
-        if i not in used and (i == 0 or arr[i] != arr[i - 1] or i - 1 in used):
-            used.add(i)
-            item = arr[i]
-            for rest in permutation(arr[:i] + arr[i + 1:], r - 1):
-                result.append([item] + rest)
-            used.remove(i)
+        for i in range(len(elements)):
+            if i > 0 and elements[i] == elements[i - 1]:
+                continue
+            generate_permutation(elements[:i] + elements[i + 1:], r - 1, path + [elements[i]])
 
+    generate_permutation(arr, r)
     return result
 
-print(permutation([1,2,2,4,3], 3))
+
+print(permutation([1, 2, 4, 3, 2], 3))
 
 # def permutation2(arr, r):
 #     n = len(arr)
