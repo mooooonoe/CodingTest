@@ -1,16 +1,7 @@
 N = int(input())
 num = list(map(int, input().split()))
-tools = list(map(int, input().split()))
+operators = list(map(int, input().split()))
 dtool = [0, 1, 2, 3] # +  -  *  /
-org = [0]*(N-1); cnt=0
-
-for i in range(4):
-    while(tools[i]>0):
-        org[cnt] = dtool[i]
-        cnt += 1
-        tools[i] -= 1
-    if(tools[i]==0):
-        continue
 
 def permutation(arr, r):
     result = []
@@ -28,46 +19,35 @@ def permutation(arr, r):
     gen_permutation(arr, r)
     return result
 
+org = []
+for i in range(4):
+    org.extend([dtool[i]] * operators[i]) ####
+
 Ori = list(permutation(org, N-1))
 
-def Toolmath(a,b,x):
-    if x == 0:
+def Calculate(a,b,op):
+    if op == 0:
         return a+b
-    elif x == 1:
+    elif op == 1:
         return a-b
-    elif x == 2:
+    elif op == 2:
         return a*b
-    elif x == 3:
-        a = round(abs(a))
-        b = round(abs(b))
-        if a<0:
-            result = -(abs(a)//b)       #### 정수 나눗셈 ***
-            return result
+    elif op == 3:
+        if a < 0:
+            return -(abs(a)//b)       #### 정수 나눗셈 ***
         else:
             return a//b
 
-one = 0; two = 0
-arr = [0]*len(Ori)
-for j in range(len(Ori)):
-    for i in range(N-1):
-        if i == 0:
-            y = num[0]
-        y = Toolmath(y, num[i+1], Ori[j][i])
-        arr[j] = y
+min_result = float('inf')
+max_result = float('-inf') #### 최대최소 초기값 설정
 
-    one = min(arr)
-    two = max(arr)
+for ops in Ori: #### 반복문 이렇게 써서 calculate 할때 ops 를 가져다 씀 !!! 왕 !!
+    result = num[0]
+    for i in range(N - 1):
+        result = Calculate(result, num[i + 1], ops[i])
 
+    min_result = min(min_result, result)
+    max_result = max(max_result, result)
 
-print(two)
-print(one)
-
-
-
-
-
-
-
-
-
-
+print(max_result)
+print(min_result)
