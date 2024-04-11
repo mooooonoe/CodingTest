@@ -2,16 +2,14 @@ N = int(input())
 tester = list(map(int, input().split()))
 a,b = map(int, input().split())
 
+cnt = N
 
-cnt = 0
-
-for i in range(N):
-    tester[i] -= a
-    cnt += 1
-    while tester[i] > 0:
-        tester[i] -= b
-        cnt += 1
-        if tester[i] <= 0:
-            break
+for i in tester:
+    i -= a
+    if i > 0:
+        if i % b:
+            cnt += (i//b)+1
+        else:
+            cnt += (i//b)
 
 print(cnt)
