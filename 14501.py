@@ -9,14 +9,10 @@ for i in range(day):
 max_value = 0
 dp = [0]*(day+1)
 
-for i in range(day-1,-1,-1):
-    if T[i] < day-i:
-        if T[i] == 1:
-            dp[i] = P[i]
-            max_value += dp[i]
-        elif T[i]>1:
+for i in range(day-1, -1, -1):
+    if T[i] <= (day-i):
             dp[i] = max(P[i]+dp[i+T[i]], max_value)
-            max_value += dp[i]
+            max_value = dp[i]
     else:
         dp[i] = max_value
 
