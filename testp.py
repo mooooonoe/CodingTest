@@ -1,14 +1,7 @@
-num = max(1, 2, 3, 0, 5, 4)
-print(num)
+arr = [1,2,3]
+r = 3
 
-arrT = [3,5,1,1,2,4,2]
-for i in range(len(arrT)-2, -1,-1):
-    print(arrT[i], end ='')
+def per(arr, r):
+    for i in per(arr[:i]+arr[i+1:], r-1):
+        item = arr[i]
 
-
-day = 7
-dp = [0 for i in range(day+1)]
-print(dp)
-
-newdp = [0] * day
-print(newdp)
