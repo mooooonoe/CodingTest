@@ -8,13 +8,13 @@ rect = [0,0,0,0,0,0]
 def turn(dir):
     a, b, c, d, e, f = rect[0], rect[1], rect[2], rect[3], rect[4], rect[5]
     if dir == 1:
-        rect[0], rect[1], rect[2], rect[3], rect[4], rect[5] = d, a, c, d, e, f
+        rect[0], rect[1], rect[2], rect[3], rect[4], rect[5] = d, b, a, f, e, c
     elif dir == 2:  # 서
-        rect[0], rect[1], rect[2], rect[3], rect[4], rect[5] = b, c, d, a, e, f
+        rect[0], rect[1], rect[2], rect[3], rect[4], rect[5] = c, b, f, a, e, d
     elif dir == 3:  # 북
-        rect[0], rect[1], rect[2], rect[3], rect[4], rect[5] = e, b, f, d, c, a
+        rect[0], rect[1], rect[2], rect[3], rect[4], rect[5] = e, a, c, d, f, b
     else:
-        rect[0], rect[1], rect[2], rect[3], rect[4], rect[5] = f, b, e, d, a, c
+        rect[0], rect[1], rect[2], rect[3], rect[4], rect[5] = b, f, c, d, a, e
 
 board = []
 
@@ -36,11 +36,9 @@ for i in comm:
     turn(i)
 
     if board[nx][ny] == 0:
-        board[nx][ny] = rect[2]
+        board[nx][ny] = rect[-1]
     else:
-        rect[2] = board[nx][ny]
+        rect[-1] = board[nx][ny]
         board[nx][ny] = 0
 
     print(rect[0])
-
-
