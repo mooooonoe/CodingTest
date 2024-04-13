@@ -1,59 +1,81 @@
 N, M = map(int, input().split())
+B = [list(map(int, input().split())) for _ in range(N)]
+D = {
+    1:[(1,0,0,0), (0,1,0,0), (0,0,1,0), (0,0,0,1)],
+    2:[(1,1,0,0), (0,0,1,1)],
+    3:[(1,0,1,0), (1,0,0,1), (0,1,1,0), (0,1,0,1)],
+    4:[(1,1,1,0), (1,1,0,1), (1,0,1,1), (0,1,1,1)],
+    5:[(1,1,1,1)]
+}
+mn = float('inf')
+empty = 0
+def solution():
+    global mn, empty
+    cctv = []
+    for i in range(N):
+        for j in range(M):
+            if B[i][j] == 0:
+                empty += 1
+            if B[i][j]%6 != 0:
+                cctv.append((i,j,B[i][j]))
+    if not cctv :
+        return empty
 
-board = [list(map(int, input().split())) for _ in range(N)]
+    def observe(x,y,u,d,l,r):
+        arr = set()
+        if u:
+            nx = x
+            while nx-1 >= 0:
+                if B[nx-1][y] == 0:
+                    arr.add((nx-1,y))
+                    nx -= 1
+                elif B[nx-1][y] != 6:
+                    nx -= 1
+                else:
+                    break
+        if d:
+            nx = x
+            while nx+1 < N:
+                if B[nx+1][y] == 0:
+                    arr.add((nx+1,y))
+                    nx += 1
+                elif B[nx+1][y] != 6:
+                    nx += 1
+                else:
+                    break
+        if l:
+            ny = y
+            while ny-1 >= 0:
+                if B[x][ny-1] == 0:
+                    arr.add((x,ny-1))
+                    ny -= 1
+                elif B[x][ny-1] != 6:
+                    ny -= 1
+                else:
+                    break
+        if r:
+            ny = y
+            while ny+1 < M:
+                if B[x][ny+1] == 0:
+                    arr.add((x,ny+1))
+                    ny += 1
+                elif B[x][ny+1] != 6:
+                    ny += 1
+                else:
+                    break
+        return arr
 
-max = N*M
-cnt = 0
-xy = [0]*max; num = [0]*max
+    def bp(idx, arr):
+        global mn, empty
+        if idx == len(cctv):
+            mn = min(mn, empty-len(arr))
+            return
+        x, y, d = cctv[idx][0], cctv[idx][1], cctv[idx][2]
+        for u,d,l,r in D[d]:
+            arr2 = observe(x,y,u,d,l,r)
+            bp(idx+1, arr|arr2)
 
-# 북 동 남 서
-dy = [1, 0, -1, 0]
-dx = [0, 1, 0, -1]
-#
-# def saw(num, board):
-#     rect = board
-#     if i == 1:
-#         now = xy[cnt]
-#         for len()
-#         x = dx[dir]; y = dy[dir]
-#
-#     elif i == 2:
-#
-#     elif i == 3:
-#
-#     elif i == 4:
-#
-#     elif i == 5:
-#
-#     return result
-#
-# for i in range(N):
-#     for j in range(M):
-#         if board[i][j] != 0:
-#             xy[cnt] = [i,j]
-#             num[cnt] = board[i][j]
-#             cnt += 1
+    bp(0,set())
+    return mn
 
-result = board.count(0)
-
-print(result)
-#
-# xy = xy[:cnt]
-# num = num[:cnt]
-#
-# min = N*M
-# for i in num:
-#
-#     for _ in 4:
-#
-#         result = saw(i, board)
-#
-#         if result < min:
-#             min = result
-#         else:
-#             continue
-#
-# print(min)
-
-
-
+print(solution())
