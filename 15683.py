@@ -7,31 +7,53 @@ cnt = 0
 xy = [0]*max; num = [0]*max
 
 # 북 동 남 서
-dx = [0, 1, 0, -1]c
-dy = [-1, 0, 1, 0]
-dir = 0
+dy = [1, 0, -1, 0]
+dx = [0, 1, 0, -1]
+#
+# def saw(num, board):
+#     rect = board
+#     if i == 1:
+#         now = xy[cnt]
+#         for len()
+#         x = dx[dir]; y = dy[dir]
+#
+#     elif i == 2:
+#
+#     elif i == 3:
+#
+#     elif i == 4:
+#
+#     elif i == 5:
+#
+#     return result
+#
+# for i in range(N):
+#     for j in range(M):
+#         if board[i][j] != 0:
+#             xy[cnt] = [i,j]
+#             num[cnt] = board[i][j]
+#             cnt += 1
 
-# board idx ++ ~ xy 상황으로 넘겨주면 쉽게 풀릴 것 같음
+result = board.count(0)
 
-for i in range(N):
-    for j in range(M):
-        if board[i][j] != 0:
-            xy[cnt] = [i,j]
-            num[cnt] = board[i][j]
-            cnt += 1
+print(result)
+#
+# xy = xy[:cnt]
+# num = num[:cnt]
+#
+# min = N*M
+# for i in num:
+#
+#     for _ in 4:
+#
+#         result = saw(i, board)
+#
+#         if result < min:
+#             min = result
+#         else:
+#             continue
+#
+# print(min)
 
-for i in range(cnt+1):
-    dir = 0
-    if num[i-1] == 1:
-        now = xy[cnt]
-        for len() 
-        x = dx[dir]; y = dy[dir]
 
-    elif num[i-1] == 2:
-
-    elif num[i-1] == 3:
-
-    elif num[i-1] == 4:
-
-    elif num[i-1] == 5:
 
