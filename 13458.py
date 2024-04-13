@@ -1,16 +1,14 @@
 N = int(input())
 
 tester = list(map(int, input().split()))
+a,b = map(int, input().split())
 
-a, b = map(int, input().split())
-
-total = N
+cnt = len(tester)
 for i in tester:
     i -= a
-    if i > 0:
-        if i % b:
-            total += (i//b) +1
-        else:
-            total += (i//b)
+    if i%b:
+        cnt += i//b+1
+    else:
+        cnt += i//b
 
-print(total)
+print(cnt)
