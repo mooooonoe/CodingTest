@@ -72,6 +72,8 @@ def solution():
             return
         x, y, d = cctv[idx][0], cctv[idx][1], cctv[idx][2]
         for u,d,l,r in D[d]:
+            print(d)
+            print(d,d,l,r)
             arr2 = observe(x,y,u,d,l,r)
             bp(idx+1, arr|arr2)
 
